@@ -25,10 +25,9 @@ public class BlackListRepository {
         solrClient.commit(BLACKLIST_CORE);
     }
 
-    public void saveSolrBean(SolrBean solrBean) throws SolrServerException, IOException {
+    public void saveSolrEntity(SolrEntity solrBean) throws SolrServerException, IOException {
         solrClient.addBean(BLACKLIST_CORE, solrBean);
         solrClient.commit(BLACKLIST_CORE);
-        solrClient.
     }
 
     public SolrDocument getById(String id) throws SolrServerException, IOException {
@@ -36,9 +35,7 @@ public class BlackListRepository {
     }
 
     public List<SolrDocument> findAll() throws SolrServerException, IOException {
-        val query = new SolrQuery("*:*");
-        val response = solrClient.query(BLACKLIST_CORE, query);
-        return response.getResults();
+        return solrClient.query(BLACKLIST_CORE, new SolrQuery("*:*")).getResults();
     }
 
     public void deleteAll() throws SolrServerException, IOException {

@@ -1,0 +1,1 @@
+Test SolrJ project based on article https://www.baeldung.com/apache-solrj

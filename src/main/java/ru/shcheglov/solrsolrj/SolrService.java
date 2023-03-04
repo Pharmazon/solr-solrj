@@ -62,7 +62,7 @@ public class SolrService {
 
     public void addBlacklist(Map<String, String> params) {
         val entity = new BlackListSolrEntity(UUID.randomUUID().toString(), params.get("name"), params.get("price"));
-        blackListComponent.addSolrBean(entity);
+        blackListComponent.addSolrEntity(entity);
     }
 
     private static BlackListQuery toBlackListQuery(Map.Entry<String, String> entry) {

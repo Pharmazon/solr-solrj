@@ -3,16 +3,12 @@ package ru.shcheglov.solrsolrj;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.val;
-import org.apache.solr.client.solrj.SolrQuery;
-import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrInputDocument;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.joining;
 
@@ -52,8 +48,8 @@ public class BlackListComponent {
     }
 
     @SneakyThrows
-    public void addSolrBean(SolrBean solrBean) {
-        blackListRepository.saveSolrBean(solrBean);
+    public void addSolrEntity(SolrEntity solrBean) {
+        blackListRepository.saveSolrEntity(solrBean);
     }
 
     @SneakyThrows

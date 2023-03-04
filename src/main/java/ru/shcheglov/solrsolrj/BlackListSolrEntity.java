@@ -9,7 +9,7 @@ import org.apache.solr.client.solrj.beans.Field;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class BlackListSolrEntity implements SolrBean {
+public class BlackListSolrEntity implements SolrEntity {
 
     @Field
     private String id;
