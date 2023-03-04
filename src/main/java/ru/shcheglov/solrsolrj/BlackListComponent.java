@@ -74,4 +74,9 @@ public class BlackListComponent {
                 .collect(joining(" AND "));
         return blackListRepository.getByQuery(queryString);
     }
+
+    @SneakyThrows
+    public List<BlackListSolrEntity> getAllSolrEntities() {
+        return blackListRepository.findAllSolrEntities();
+    }
 }

@@ -7,9 +7,11 @@ import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrInputDocument;
+import org.apache.solr.common.params.MapSolrParams;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 @Repository
@@ -30,12 +32,24 @@ public class BlackListRepository {
         solrClient.commit(BLACKLIST_CORE);
     }
 
+    public List<BlackListSolrEntity> findAllSolrEntities() throws SolrServerException, IOException {
+        val query = new SolrQuery("*:*");
+        query.setSort("name", SolrQuery.ORDER.asc);
+
+        val response = solrClient.query(BLACKLIST_CORE, query);
+        return response.getBeans(BlackListSolrEntity.class);
+    }
+
     public SolrDocument getById(String id) throws SolrServerException, IOException {
        return solrClient.getById(BLACKLIST_CORE, id);
     }
 
     public List<SolrDocument> findAll() throws SolrServerException, IOException {
-        return solrClient.query(BLACKLIST_CORE, new SolrQuery("*:*")).getResults();
+        val queryParamMap = new HashMap<String, String>();
+        queryParamMap.put("q", "*:*");
+        queryParamMap.put("sort", "name asc");
+
+        return solrClient.query(BLACKLIST_CORE, new MapSolrParams(queryParamMap)).getResults();
     }
 
     public void deleteAll() throws SolrServerException, IOException {

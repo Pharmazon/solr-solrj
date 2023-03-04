@@ -61,11 +61,16 @@ public class SolrService {
     }
 
     public void addBlacklist(Map<String, String> params) {
-        val entity = new BlackListSolrEntity(UUID.randomUUID().toString(), params.get("name"), params.get("price"));
+        val entity = new BlackListSolrEntity(UUID.randomUUID().toString(), params.get("name"),
+                Double.parseDouble(params.get("price")));
         blackListComponent.addSolrEntity(entity);
     }
 
     private static BlackListQuery toBlackListQuery(Map.Entry<String, String> entry) {
         return new BlackListQuery(entry.getKey(), entry.getValue());
+    }
+
+    public List<BlackListSolrEntity> getAllSolrEntities() {
+        return blackListComponent.getAllSolrEntities();
     }
 }

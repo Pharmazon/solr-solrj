@@ -18,5 +18,5 @@ public class BlackListSolrEntity implements SolrEntity {
     private String name;
 
     @Field
-    private String price;
+    private Double price;
 }

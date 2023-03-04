@@ -33,6 +33,11 @@ public class SolrController {
         return solrService.getAll();
     }
 
+    @GetMapping("/get/all/beans")
+    public List<BlackListSolrEntity> getAllEntities() {
+        return solrService.getAllSolrEntities();
+    }
+
     @GetMapping("/delete/all")
     public String deleteAll() {
         solrService.deleteAll();
